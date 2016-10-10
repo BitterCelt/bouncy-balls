@@ -13,26 +13,29 @@ function setup() {
 
 }
 
-function draw() { 
+function draw() {
   background(100);
   for(var i = 0; i < ball.length; i++) {
     ball[i].bounce();
     ball[i].make();
   }
-
-
+  if (mouseIsPressed) {
+    strokeWeight(1);
+    noFill();
+    ellipse(mouseX, mouseY, 60, 60);
+  }
   line(mouseX-5,mouseY,mouseX+5,mouseY);
   line(mouseX,mouseY+5,mouseX,mouseY-5);
 }
 
-function mousePressed(){
+function mouseReleased(){
   if (i > 24) {
     i = 0;
   }
   ball[i].posX = mouseX;
   ball[i].posY = mouseY;
-  ball[i].speedY = 0;
-  ball[i].speedX = random(-3,3);
+  ball[i].speedY = mouseY - pmouseY;
+  ball[i].speedX = mouseX - pmouseX;
   i++;
 
 }
@@ -40,15 +43,20 @@ function mousePressed(){
 function bouncer() {
   this.posX;
   this.posY;
-  this.speedX = random(-3,3);
-  this.speedY = 0;
+  this.speedX;
+  this.speedY;
   this.gravity = 1;
   this.c = color(random(255), random(255), random(255));
 
   this.bounce = function() {
+
     this.posX += this.speedX;
     this.speedY += this.gravity;
     this.posY += this.speedY;
+
+    if (this.posY - 30 < 0) {
+      this.speedY = -this.speedY;
+    }
 
     if (this.posY + 30 > height) {
       this.speedY = -this.speedY;
