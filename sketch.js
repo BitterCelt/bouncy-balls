@@ -13,7 +13,7 @@ function setup() {
 
 }
 
-function draw() {
+function draw() { 
   background(100);
   for(var i = 0; i < ball.length; i++) {
     ball[i].bounce();
