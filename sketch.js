@@ -1,16 +1,12 @@
 var ball = [];
 var i = 0;
 
-
 function setup() {
   createCanvas(windowWidth,windowHeight);
-
   noCursor();
-
-  for(var i = 0; i < 25; i++) {
+  for(var i = 0; i < 50; i++) {
     ball[i] = new bouncer();
   }
-
 }
 
 function draw() {
@@ -29,7 +25,7 @@ function draw() {
 }
 
 function mouseReleased(){
-  if (i > 24) {
+  if (i > 49) {
     i = 0;
   }
   ball[i].posX = mouseX;
@@ -62,6 +58,13 @@ function bouncer() {
     if (this.posY + 30 > height) {
       this.posY = height - 30;
       this.speedY = -this.speedY + .5;
+      if (this.speedX > 0.2) {
+        this.speedX -= 0.2;
+      } else if (this.speedX < -0.2) {
+        this.speedX += 0.2;
+      } else {
+        this.speedX = 0;
+      }
     }
 
     if (this.posX - 30 < 0) {
