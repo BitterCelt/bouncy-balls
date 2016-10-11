@@ -54,20 +54,13 @@ function bouncer() {
     this.speedY += this.gravity;
     this.posY += this.speedY;
 
-    if (this.posY + 30 > height && this.speedY <= 0) {
-      this.gravity = 0;
-      this.posY = height -30;
-      this.speedY = 0;
-    } else {
-      this.gravity = 1;
-    }
-
     if (this.posY - 30 < 0) {
       this.speedY = -this.speedY;
     }
 
     if (this.posY + 30 > height) {
-      this.speedY = -this.speedY;
+      this.posY = height - 30;
+      this.speedY = -this.speedY + .5;
     }
 
     if (this.posX - 30 < 0) {
