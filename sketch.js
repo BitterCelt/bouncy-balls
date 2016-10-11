@@ -55,6 +55,7 @@ function bouncer() {
     this.posY += this.speedY;
 
     if (this.posY - 30 < 0) {
+      this.posY = 30;
       this.speedY = -this.speedY;
     }
 
@@ -64,10 +65,12 @@ function bouncer() {
     }
 
     if (this.posX - 30 < 0) {
+      this.posX = 30;
       this.speedX = -this.speedX;
     }
 
     if (this.posX + 30 > width) {
+      this.posX = width - 30;
       this.speedX = -this.speedX;
     }
 
